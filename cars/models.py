@@ -108,13 +108,13 @@ class Car(models.Model):
     transmission = models.CharField(max_length=255)
     interior = models.CharField(max_length=255)
     miles = models.IntegerField()
-    doors  = models.CharField(choices=door_choices, max_length=255)
+    doors  = models.CharField(choices=door_choices, max_length=10)
     passengers = models.IntegerField()
     vin_no = models.CharField(max_length=255)
     milage = models.IntegerField()
-    fuel_type = models.CharField(max_length=255)
+    fuel_type = models.CharField(max_length=50)
     no_of_owners  = models.CharField(max_length=255)
-    is_featured = models.BooleanField(True)
+    is_featured = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=datetime.now, blank=True)
 
     
