@@ -1,5 +1,8 @@
+from random import choices
 from django.db import models
 from datetime import datetime
+from ckeditor.fields import RichTextField
+from multiselectfield import MultiSelectField
 
 class Car(models.Model):
     # creating a tuple for selection option
@@ -96,13 +99,13 @@ class Car(models.Model):
     year = models.IntegerField(("year"), choices = year_choice)
     condition = models.CharField(max_length=255)
     price= models.IntegerField()
-    description = models.TextField(max_length=1000)
+    description = RichTextField(max_length=1000) # we are using ckeditor
     car_photo = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_1 = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_2 = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_3 =models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_4 = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
-    features = models.CharField(max_length=255)
+    features =MultiSelectField(choices = features_choices ) # we are using multiselect field
     body_style = models.CharField(choices= features_choices,max_length=255)
     engine = models.CharField(max_length=255)
     transmission = models.CharField(max_length=255)
