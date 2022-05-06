@@ -62,7 +62,7 @@ class Car(models.Model):
     # year choices 
     year_choice = []
     
-    for year in range (200, datetime.now().year + 1):
+    for year in range (2000, datetime.now().year + 1):
         year_choice.append((year, year))
     
     # feature choices drop menu
@@ -99,14 +99,14 @@ class Car(models.Model):
     year = models.IntegerField(("year"), choices = year_choice)
     condition = models.CharField(max_length=255)
     price= models.IntegerField()
-    description = RichTextField(max_length=1000) # we are using ckeditor
+    description = RichTextField() # we are using ckeditor
     car_photo = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_1 = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_2 = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_3 =models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     car_photo_4 = models.ImageField(upload_to  = "photos/%Y/%m/%d/", blank=True)
     features =MultiSelectField(choices = features_choices ) # we are using multiselect field
-    body_style = models.CharField(choices= features_choices,max_length=255)
+    body_style = models.CharField(max_length=255)
     engine = models.CharField(max_length=255)
     transmission = models.CharField(max_length=255)
     interior = models.CharField(max_length=255)
@@ -122,4 +122,6 @@ class Car(models.Model):
 
     
     
-    
+    def __str__(self):
+         return self.car_title
+       
