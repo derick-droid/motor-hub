@@ -11,7 +11,7 @@ def home(request):
 
     data = {
         'teams': teams,
-        'featured_cats' : featured_cars,
+        'featured_cars' : featured_cars,
     }
     
     return render(request, "pages/home.html", data)
