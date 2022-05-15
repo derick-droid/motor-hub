@@ -2,7 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from .models import Car
 
 def cars(request):
-    cars = Car.objects.order_by("-created_date")
+    cars = Car.objects.order_by("-created_date") # extracting data fromthe database
+    paginator = paginator(cars, 3) # creating pages
+    page = request.GET.get("page")
     data = {
         "cars" : cars,
     }
