@@ -1,3 +1,4 @@
+from ast import keyword
 from django.shortcuts import get_object_or_404, render
 from .models import Car
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -24,7 +25,15 @@ def car_detail(request, id):
 
 
 def search(request):
+    # bringing data from the database
     cars = Car.objects.order_by("-created_date")
+    
+    # enable such functionality with keys
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            cars = cars.filter(description__icontains = keyword)
+    
     data = {
         "cars" : cars,
     }
