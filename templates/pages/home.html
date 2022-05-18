@@ -45,8 +45,8 @@
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-make">
                         <option selected="true" disabled="disabled">Model</option>
-                      {% for model in search_fields %}
-                      <option value="{{model.model}}">{{model.model}}</option>
+                      {% for model in model_search  %}
+                      <option value="{{model}}">{{model}}</option>
 
                       {% endfor %}
                     </select>
@@ -61,8 +61,8 @@
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-year">
                         <option selected="true" disabled="disabled">Year</option>
-                       {% for year in search_fields %}
-                       <option value="{{year.year}}">{{year.year}}</option>
+                       {% for year in year_search %}
+                       <option value="{{year}}">{{year}}</option>
 
                        {% endfor %}
                     </select>
@@ -70,8 +70,8 @@
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-type">
                         <option selected="true" disabled="disabled">Select Type Of Car</option>
-                       {% for body in search_fields %}
-                         <option value="{{body.body}}">{{body.body_style}}</option>
+                       {% for body in body_search %}
+                         <option value="{{body}}">{{body}}</option>
 
                        {% endfor %}
                     </select>
