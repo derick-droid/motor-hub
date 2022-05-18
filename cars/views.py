@@ -9,8 +9,16 @@ def cars(request):
     page = request.GET.get("page")
     paged_cars = paginator.get_page(page)
     
+    # search functionality in cars page
+    model_search = Car.objects.values_list("model", flat=True).distinct()
+    year_search = Car.objects.values_list("year", flat=True).distinct()
+    body_search = Car.objects.values_list("body_style", flat=True).distinct()
+    
     data = {
         "cars" : cars,
+        'model_search' : model_search,
+        'year_search' : year_search,
+        'body_search' : body_search,
     }
     return render(request, 'cars/cars.html', data)
 
@@ -27,6 +35,12 @@ def car_detail(request, id):
 def search(request):
     # bringing data from the database
     cars = Car.objects.order_by("-created_date")
+    
+     # search functionality in cars page
+    model_search = Car.objects.values_list("model", flat=True).distinct()
+    year_search = Car.objects.values_list("year", flat=True).distinct()
+    body_search = Car.objects.values_list("body_style", flat=True).distinct()
+    transmission_search = Car.objects.values_list("transmission", flat=True).distinct()
     
     # enable such functionality with keys
     
@@ -53,6 +67,12 @@ def search(request):
         if body_style:
             cars = cars.filter(body_style__iexact = body_style)
             
+    # enable search by transmission 
+    if 'transmission' in request.GET:
+        transmission = request.GET['transmission']
+        if transmission:
+            cars = cars.filter(transmission__iexact = transmission)
+            
     # enable search functionality with minimum and maximum prices
     if 'min_price' in request.GET:
         min_prie = request.GET['min_price']
@@ -63,5 +83,9 @@ def search(request):
     
     data = {
         "cars" : cars,
+        'model_search' : model_search,
+        'year_search' : year_search,
+        'body_search' : body_search,
+        'transmission_search' : transmission_search
     }
     return render (request, "cars/search.html", data)
