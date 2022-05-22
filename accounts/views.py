@@ -6,7 +6,13 @@ def login(request):
     return render(request, "accounts/login.html")
 
 def register(request):
-    return render(request, "accounts/register.html")
+    if request.method == "POST":
+        print("hello world")
+        return redirect("register")
+    else:
+         return render(request, "accounts/register.html")
+
+    
 
 def logout(request):
     return redirect("home")
