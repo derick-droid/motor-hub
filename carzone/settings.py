@@ -27,6 +27,9 @@ SECRET_KEY = 'django-insecure-2j4j2lf)l4i%4&&t8c-rp&qo=97tg^@m#-h-##=i2z3k-78yly
 DEBUG = False
 ALLOWED_HOSTS = []
 
+# to login via facebook to dashboard
+LOGIN_REDIRECT_URL = 'dashboard'
+
 
 # Application definition
 
@@ -42,7 +45,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'django.contrib.humanize',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #  providers
+'allauth.socialaccount.providers.facebook',
+'allauth.socialaccount.providers.google',
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -140,6 +153,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
   
 }
+SITE_ID = 1
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
