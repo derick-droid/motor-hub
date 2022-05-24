@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2j4j2lf)l4i%4&&t8c-rp&qo=97tg^@m#-h-##=i2z3k-78yly'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =False
+DEBUG = False
 ALLOWED_HOSTS = []
 
 
@@ -129,9 +129,17 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'carzone/static'),
 ]
 
+
 # MEDIA SETTINGS
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+  
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

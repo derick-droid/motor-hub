@@ -1,4 +1,7 @@
+from email import message
+from pyexpat.errors import messages
 from django.shortcuts import redirect, render
+from django.contrib import messages
 
 # Create your views here.
 
@@ -7,7 +10,7 @@ def login(request):
 
 def register(request):
     if request.method == "POST":
-        print("hello world")
+        messages.error(request, "This is error message")
         return redirect("register")
     else:
          return render(request, "accounts/register.html")
