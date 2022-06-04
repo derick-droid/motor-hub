@@ -13,7 +13,6 @@ django-multiselectfield==0.1.12
 idna==3.3
 oauthlib==3.2.0
 Pillow==9.1.0
-pkg_resources==0.0.0
 psycopg2==2.9.3
 pycparser==2.21
 PyJWT==2.4.0
